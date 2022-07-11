@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.studentsController = void 0;
-const citiesRepository_js_1 = require("../repositories/citiesRepository.js");
-const studentsRepository_js_1 = require("../repositories/studentsRepository.js");
+const citiesRepository_1 = require("../repositories/citiesRepository");
+const studentsRepository_1 = require("../repositories/studentsRepository");
 async function createStudent(req, res) {
     const newStudent = req.body;
     const { name, city } = newStudent;
     console.log(newStudent);
     try {
-        const verifyCity = await citiesRepository_js_1.citiesRepository.findCity(city);
+        const verifyCity = await citiesRepository_1.citiesRepository.findCity(city);
         if (!verifyCity.rows.length) {
             return res.send("cidade não cadastrada").status(422);
         }
         const cityId = verifyCity.rows[0].id;
-        await studentsRepository_js_1.studentsRepository.createStudent(name, cityId);
+        await studentsRepository_1.studentsRepository.createStudent(name, cityId);
         return res.sendStatus(201);
     }
     catch (error) {
@@ -23,7 +23,7 @@ async function createStudent(req, res) {
 }
 async function getStudents(req, res) {
     try {
-        const students = await studentsRepository_js_1.studentsRepository.getStudents();
+        const students = await studentsRepository_1.studentsRepository.getStudents();
         return res.send(students.rows).status(200);
     }
     catch (error) {

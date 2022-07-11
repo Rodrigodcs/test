@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node build/index.js",
-    "lazyDev": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts"
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts"
   },
   "keywords": [],
   "author": "",
